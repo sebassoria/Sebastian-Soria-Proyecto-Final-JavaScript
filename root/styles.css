@@ -1,0 +1,118 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --color1: #ff8c00;
+  --color2: #985484;
+  --color3: #ffffff;
+}
+body {
+  background-color: var(--color3);
+}
+
+/* header */
+header .nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.nav {
+  background-color: #ffffff6b;
+  font-family: "Playfair Display", serif;
+  font-size: 1.5em;
+  padding: 0.3em;
+}
+.Logo img {
+  width: 170px;
+}
+
+/* bienvenida */
+.bienvenida {
+  text-align: center;
+  padding: 15em;
+}
+.bienvenida h2 {
+  font-size: 1.5em;
+  font-family: "Playfair Display", serif;
+  padding: 0.5em;
+  margin: 0;
+}
+
+/* mapa */
+.cont__mapa {
+  margin: 0;
+  padding: 0;
+}
+.col__mapa iframe {
+  width: 100%;
+  height: 27em;
+}
+
+/* footer */
+
+.pie-pagina {
+  /* width: 100%; */
+  background-color: #e5c294;
+}
+.pie-pagina .grup-1 {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2.5em 0;
+}
+
+.pie-pagina .grup-1 .box figure {
+  width: 100%;
+  /* height: 100%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .pie-pagina .grup-1 .box figure img {
+  width: 250px;
+} */
+.pie-pagina .grup-1 .box h2 {
+  font-family: "Playfair Display", serif;
+  font-style: normal;
+  font-weight: bold;
+  color: #764100;
+  font-size: 20px;
+}
+.pie-pagina .grup-1 .box p {
+  font-family: "Playfair Display", serif;
+  font-size: 15px;
+  color: #c4710c;
+  margin-bottom: 10px;
+}
+.pie-pagina .grup-1 .red-social a {
+  display: inline-block;
+  text-decoration: none;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  color: #c4710c;
+  margin-right: 10px;
+  text-align: center;
+  transition: all 300ms ease;
+}
+.pie-pagina .grup-1 .red-social a:hover {
+  color: #ffffff;
+}
+
+.pie-pagina .grup-2 {
+  background-color: #8c4d00;
+  padding: 15px 10px;
+  text-align: center;
+  color: #cb995c;
+}
+.pie-pagina .grup-2 small {
+  font-size: 15px;
+}
+
+/* Fin Footer */
