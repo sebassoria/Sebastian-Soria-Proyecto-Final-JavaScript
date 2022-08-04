@@ -4,118 +4,104 @@ Al final me muestra los discos encargados
 */
 
 //Array de objetos discos en stock
-const discos = [
-  {
-    artista: "The Beatles",
-    album: "abbey road",
-    anio: 1969,
-    company: "Apple",
-    precio: 12000,
-  },
-  {
-    artista: "David Bowie",
-    album: "heathen",
-    anio: 2002,
-    company: "EMI",
-    precio: 9000,
-  },
-  {
-    artista: "Anderson.Paak",
-    album: "malibu",
-    anio: 2016,
-    company: "EMPIRE",
-    precio: 8000,
-  },
-  {
-    artista: "Luis Alberto Spinetta",
-    album: "para los arboles",
-    anio: 2003,
-    company: "Universal Music Argentina S.A.",
-    precio: 10000,
-  },
-  {
-    artista: "Led zeppelin",
-    album: "houses of the holy",
-    anio: 1973,
-    company: "Atlanctic",
-    precio: 5000,
-  },
-  {
-    artista: "Pink floyd",
-    album: "the dark side of the moon",
-    anio: 1973,
-    company: "Sony music",
-    precio: 7000,
-  },
-  {
-    artista: "Radiohead",
-    album: "ok computer",
-    anio: 1997,
-    company: "XL recording",
-    precio: 6850,
-  },
-  {
-    artista: "Yes",
-    album: "close to the edge",
-    anio: 1972,
-    company: "Elektra",
-    precio: 5000,
-  },
-  {
-    artista: "Gorillaz",
-    album: "demon days",
-    anio: 2005,
-    company: "Parlophone records",
-    precio: 5400,
-  },
-  {
-    artista: "David Bowie",
-    album: "the next day",
-    anio: 2013,
-    company: "Columbia records",
-    precio: 9000,
-  },
-  {
-    artista: "George Harrison",
-    album: "living in the material world",
-    anio: 1973,
-    company: "Universal",
-    precio: 8700,
-  },
-  {
-    artista: "Pescado rabioso",
-    album: "pescado rabioso 2",
-    anio: 1973,
-    company: "Sony music",
-    precio: 11000,
-  },
-];
+
+class vinilos {
+  constructor(tapa, artista, album, anio, precio) {
+    this.tapa = tapa;
+    this.artista = artista;
+    this.album = album;
+    this.anio = anio;
+    this.precio = precio;
+  }
+}
+let discos = [];
+discos.push(
+  new vinilos(
+    "img/tapas/d12.jpg",
+    "George Harrison",
+    "living in the material world",
+    1973,
+    6000
+  )
+);
+discos.push(
+  new vinilos(
+    "img/tapas/d3.jpg",
+    "Pescado rabioso",
+    "pescado rabioso 2",
+    1973,
+    7000
+  )
+);
+discos.push(
+  new vinilos("img/tapas/d1.jpg", "David Bowie", "the next day", 2013, 5000)
+);
+discos.push(
+  new vinilos("img/tapas/d9.jpg", "Gorillaz", "demon day", 2005, 5700)
+);
+discos.push(
+  new vinilos("img/tapas/d15.jpeg", "Yes", "close to the edge", 1972, 6300)
+);
+discos.push(
+  new vinilos("img/tapas/d6.jpg", "Radiohead", "ok computer", 1997, 6500)
+);
+discos.push(
+  new vinilos(
+    "img/tapas/d5.jpg",
+    "Pink floyd",
+    "the dark side of the moon",
+    1973,
+    6900
+  )
+);
+discos.push(
+  new vinilos(
+    "img/tapas/d8.jpg",
+    "Led zeppelin",
+    "houses of the holy",
+    1973,
+    6800
+  )
+);
+discos.push(
+  new vinilos(
+    "img/tapas/d10.jpg",
+    "Luis Alberto Spinetta",
+    "para los arboles",
+    2003,
+    7100
+  )
+);
+discos.push(
+  new vinilos("img/tapas/d2.jpg", "Anderson.Paak", "malibu", 2016, 5500)
+);
+discos.push(
+  new vinilos("img/tapas/d7.jpg", "David Bowie", "heathen", 2002, 4900)
+);
+discos.push(
+  new vinilos("img/tapas/d4.webp", "The Beatles", "abbey road", 1969, 6700)
+);
+console.log(discos);
+
 //fin array
 
-alert("El stock actual es de " + discos.length + " discos de vinilo.");
+// alert("El stock actual es de " + discos.length + " discos de vinilo.");
 
 //Array vacio para pushear el encargue
-const encargues = [];
+let encargues = [];
 
 //funcion para pushear el encargue
 function agrDisco() {
   let artista = prompt("Por favor ingrese el Nombre del artista");
   let album = prompt("Por favor ingrese el Nombre del album");
   let anio = Number(prompt("Por favor ingrese el año del album"));
-  let compania = prompt("Por favor ingrese la compania disquera");
   let precio = Number(
     prompt("Por favor ingrese un precio estimado del vinilo")
   );
 
   album = album.toLowerCase();
 
-  encargues.push({
-    artista: artista,
-    album: album,
-    anio: anio,
-    company: compania,
-    precio: precio,
-  });
+  encargues.push(new vinilos("img/disc1.png", artista, album, anio, precio));
 }
 
 let consulta;
@@ -172,4 +158,20 @@ encargues.forEach((el) => {
       el.artista +
       ", pronto le enviaremos novedades."
   );
+});
+
+//armado de grilla con objetos del array
+const productos = document.getElementById("galProd");
+
+discos.forEach((disc) => {
+  const divProd = document.createElement("div");
+  divProd.className = "col-lg-3 col-md-6 col-sd-12 gal__item";
+  divProd.innerHTML = `<div><img src="${disc.tapa}"/>
+  <h4>${disc.artista}</h4>
+  <p>${disc.album}</p>
+  <p>Año: ${disc.anio}</p>
+  <h6>Precio: $${disc.precio}</h6>
+  <button>Comprar</button></div>`;
+
+  productos.append(divProd);
 });
