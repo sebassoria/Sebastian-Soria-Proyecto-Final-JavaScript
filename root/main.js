@@ -217,6 +217,8 @@ const mensajeCargado = () => {
   );
 });*/
 
+let carrito = [];
+
 //armado de grilla con objetos del array
 const productos = document.getElementById("galProd");
 
@@ -228,7 +230,27 @@ discos.forEach((disc) => {
   <p>${disc.album}</p>
   <p>Año: ${disc.anio}</p>
   <h6>Precio: $${disc.precio}</h6>
-  <button type="button" class="btn btn-warning">Comprar</button></div>`;
+  <button type="button" class="btn btn-warning" id="btn-compra">Comprar</button></div>`;
+
+  // divProd.innerHTML = `<div class="card" style="width: 18rem;">
+  // <img src="${disc.tapa}" class="card-img-top" alt="...">
+  // <div class="card-body">
+  //   <h5 class="card-title">${disc.artista}</h5>
+  //   <p class="card-text">${disc.album}</p>
+  //   <p class="card-text">${disc.anio}</p>
+  //   <h6>Precio: $${disc.precio}</h6>
+  //   <button type="button" class="btn btn-warning">Comprar</button>
+  // </div>
+  // </div>`;
 
   productos.append(divProd);
+});
+
+const agrCarrito = document.getElementById("btn-compra");
+
+agrCarrito.addEventListener("click", (ev) => {
+  ev.preventDefault();
+  // carrito.push(vinilos);
+  // console.log(carrito);
+  console.log("hola mundo");
 });
