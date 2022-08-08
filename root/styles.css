@@ -31,16 +31,30 @@ header .nav {
   width: 170px;
 }
 
-/* bienvenida */
+/* bienvenida + Encargues*/
 .bienvenida {
+  padding: 4em;
+}
+.text-encargues {
   text-align: center;
-  padding: 15em;
+  padding-top: 1.7em;
+  margin-top: 2em;
 }
-.bienvenida h2 {
-  font-size: 1.5em;
+.text-encargues b {
+  font-size: 1em;
   font-family: "Playfair Display", serif;
-  padding: 0.5em;
 }
+.img-hombre {
+  text-align: center;
+}
+.formularios h4 {
+  text-align: center;
+}
+.finalizar {
+  margin-top: 1em;
+}
+
+/* discos */
 .gal {
   /* background-color: #c4710c; */
   margin: 3em 0;

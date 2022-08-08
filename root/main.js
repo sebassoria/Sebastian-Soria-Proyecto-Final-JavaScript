@@ -85,13 +85,70 @@ console.log(discos);
 
 //fin array
 
-// alert("El stock actual es de " + discos.length + " discos de vinilo.");
+const registroUsuarios = [];
 
-//Array vacio para pushear el encargue
-let encargues = [];
+const usuario = document.getElementById("usuario");
+const email = document.getElementById("email");
+
+const datos = document.getElementById("form1");
+
+datos.addEventListener("submit", (evento) => {
+  evento.preventDefault();
+  const valorUsuario = usuario.value;
+  const valorEmail = email.value;
+
+  const usuarios = {
+    Nombre: valorUsuario,
+    Correo: valorEmail,
+  };
+
+  registroUsuarios.push(usuarios);
+
+  console.log(registroUsuarios);
+});
+
+const encargues = [];
+
+const inputArtista = document.getElementById("input-artista");
+const inputAlbum = document.getElementById("input-album");
+const inputAnio = document.getElementById("input-anio");
+
+const formulario = document.getElementById("form2");
+
+formulario.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const art = inputArtista.value;
+  const album = inputAlbum.value;
+  const anio = inputAnio.value;
+
+  encargues.push(new vinilos("img/disc1.png", art, album, anio, "a definir"));
+  // console.log(encargues);
+  formulario.reset();
+});
+
+const pedidoUsuario = [];
+
+const finalizar = document.getElementById("finalizar");
+
+finalizar.addEventListener("click", () => {
+  pedidoUsuario.push(registroUsuarios);
+  pedidoUsuario.push(encargues);
+
+  console.log(pedidoUsuario);
+
+  mensajeCargado(registroUsuarios);
+});
+
+const mensajeCargado = () => {
+  const mensajeFinal = document.getElementById("mensajeModal");
+  mensajeFinal.innerHTML = `${registroUsuarios[0].Nombre},
+  usted ha encargado ${encargues.length} discos.<br>
+  pronto le enviaremos un email.`;
+};
 
 //funcion para pushear el encargue
-function agrDisco() {
+/*function agrDisco() {
   let artista = prompt("Por favor ingrese el Nombre del artista");
   let album = prompt("Por favor ingrese el Nombre del album");
   let anio = Number(prompt("Por favor ingrese el año del album"));
@@ -102,13 +159,13 @@ function agrDisco() {
   album = album.toLowerCase();
 
   encargues.push(new vinilos("img/disc1.png", artista, album, anio, precio));
-}
+}*/
 
-let consulta;
-let encargar;
+// let consulta;
+// let encargar;
 
 //funcion de busqueda
-function busqueda() {
+/*function busqueda() {
   let buscar = prompt("Que album esta buscando?");
   //aca aplico .find para recorrer el array discos buscando un album
   const encontrado = discos.find((elemento) => {
@@ -129,12 +186,12 @@ function busqueda() {
   } else {
     alert("El album " + encontrado.album + " esta disponible");
   }
-}
+}*/
 
-busqueda();
+// busqueda();
 
 //funcion de nueva consulta
-function otraConsulta() {
+/*function otraConsulta() {
   consulta = prompt("Quiere hacer otra consulta? SI/NO");
   if (consulta.toUpperCase() === "SI") {
     encontrado = false;
@@ -143,13 +200,13 @@ function otraConsulta() {
   } else {
     console.log(discos);
   }
-}
-otraConsulta();
+}*/
+// otraConsulta();
 
-console.log(encargues);
+// console.log(encargues);
 
 //aca aplico .forEach para mostrar los discos encargados
-encargues.forEach((el) => {
+/*encargues.forEach((el) => {
   console.log(el.album);
   alert(
     "Usted ha solicitado el disco: " +
@@ -158,7 +215,7 @@ encargues.forEach((el) => {
       el.artista +
       ", pronto le enviaremos novedades."
   );
-});
+});*/
 
 //armado de grilla con objetos del array
 const productos = document.getElementById("galProd");
@@ -171,7 +228,7 @@ discos.forEach((disc) => {
   <p>${disc.album}</p>
   <p>Año: ${disc.anio}</p>
   <h6>Precio: $${disc.precio}</h6>
-  <button>Comprar</button></div>`;
+  <button type="button" class="btn btn-warning">Comprar</button></div>`;
 
   productos.append(divProd);
 });
