@@ -1,17 +1,13 @@
-/*En este simulador recorro el array buscando un disco en particular, si no lo encuentro,
-puedo encargar el disco o ignorarlo y hacer otra consulta si asi lo deseo.
-Al final me muestra los discos encargados
-*/
-
 //Array de objetos discos en stock
 
 class vinilos {
-  constructor(tapa, artista, album, anio, precio) {
+  constructor(tapa, artista, album, anio, precio, id) {
     this.tapa = tapa;
     this.artista = artista;
     this.album = album;
     this.anio = anio;
     this.precio = precio;
+    this.id = id;
   }
 }
 let discos = [];
@@ -21,7 +17,8 @@ discos.push(
     "George Harrison",
     "living in the material world",
     1973,
-    6000
+    6000,
+    1
   )
 );
 discos.push(
@@ -30,20 +27,21 @@ discos.push(
     "Pescado rabioso",
     "pescado rabioso 2",
     1973,
-    7000
+    7000,
+    2
   )
 );
 discos.push(
-  new vinilos("img/tapas/d1.jpg", "David Bowie", "the next day", 2013, 5000)
+  new vinilos("img/tapas/d1.jpg", "David Bowie", "the next day", 2013, 5000, 3)
 );
 discos.push(
-  new vinilos("img/tapas/d9.jpg", "Gorillaz", "demon day", 2005, 5700)
+  new vinilos("img/tapas/d9.jpg", "Gorillaz", "demon day", 2005, 5700, 4)
 );
 discos.push(
-  new vinilos("img/tapas/d15.jpeg", "Yes", "close to the edge", 1972, 6300)
+  new vinilos("img/tapas/d15.jpeg", "Yes", "close to the edge", 1972, 6300, 5)
 );
 discos.push(
-  new vinilos("img/tapas/d6.jpg", "Radiohead", "ok computer", 1997, 6500)
+  new vinilos("img/tapas/d6.jpg", "Radiohead", "ok computer", 1997, 6500, 6)
 );
 discos.push(
   new vinilos(
@@ -51,7 +49,8 @@ discos.push(
     "Pink floyd",
     "the dark side of the moon",
     1973,
-    6900
+    6900,
+    7
   )
 );
 discos.push(
@@ -60,7 +59,8 @@ discos.push(
     "Led zeppelin",
     "houses of the holy",
     1973,
-    6800
+    6800,
+    8
   )
 );
 discos.push(
@@ -69,22 +69,24 @@ discos.push(
     "Luis Alberto Spinetta",
     "para los arboles",
     2003,
-    7100
+    7100,
+    9
   )
 );
 discos.push(
-  new vinilos("img/tapas/d2.jpg", "Anderson.Paak", "malibu", 2016, 5500)
+  new vinilos("img/tapas/d2.jpg", "Anderson.Paak", "malibu", 2016, 5500, 10)
 );
 discos.push(
-  new vinilos("img/tapas/d7.jpg", "David Bowie", "heathen", 2002, 4900)
+  new vinilos("img/tapas/d7.jpg", "David Bowie", "heathen", 2002, 4900, 11)
 );
 discos.push(
-  new vinilos("img/tapas/d4.webp", "The Beatles", "abbey road", 1969, 6700)
+  new vinilos("img/tapas/d4.webp", "The Beatles", "abbey road", 1969, 6700, 12)
 );
 console.log(discos);
 
 //fin array
 
+//Registro de usuario para encargar discos
 const registroUsuarios = [];
 
 const usuario = document.getElementById("usuario");
@@ -107,6 +109,7 @@ datos.addEventListener("submit", (evento) => {
   console.log(registroUsuarios);
 });
 
+//datos de discos a encargar
 const encargues = [];
 
 const inputArtista = document.getElementById("input-artista");
@@ -127,6 +130,7 @@ formulario.addEventListener("submit", (e) => {
   formulario.reset();
 });
 
+//boton finalizar
 const pedidoUsuario = [];
 
 const finalizar = document.getElementById("finalizar");
@@ -147,110 +151,75 @@ const mensajeCargado = () => {
   pronto le enviaremos un email.`;
 };
 
-//funcion para pushear el encargue
-/*function agrDisco() {
-  let artista = prompt("Por favor ingrese el Nombre del artista");
-  let album = prompt("Por favor ingrese el Nombre del album");
-  let anio = Number(prompt("Por favor ingrese el año del album"));
-  let precio = Number(
-    prompt("Por favor ingrese un precio estimado del vinilo")
-  );
-
-  album = album.toLowerCase();
-
-  encargues.push(new vinilos("img/disc1.png", artista, album, anio, precio));
-}*/
-
-// let consulta;
-// let encargar;
-
-//funcion de busqueda
-/*function busqueda() {
-  let buscar = prompt("Que album esta buscando?");
-  //aca aplico .find para recorrer el array discos buscando un album
-  const encontrado = discos.find((elemento) => {
-    return elemento.album === buscar.toLowerCase();
-  });
-  //opcion de encargar un disco
-  if (encontrado === undefined) {
-    encargar = prompt(
-      "El album " +
-        buscar +
-        " no esta en stock, quiere encargar ese disco? SI/NO"
-    );
-    if (encargar.toUpperCase() === "SI") {
-      agrDisco();
-    } else {
-      console.log("solo consulta");
-    }
-  } else {
-    alert("El album " + encontrado.album + " esta disponible");
-  }
-}*/
-
-// busqueda();
-
-//funcion de nueva consulta
-/*function otraConsulta() {
-  consulta = prompt("Quiere hacer otra consulta? SI/NO");
-  if (consulta.toUpperCase() === "SI") {
-    encontrado = false;
-    busqueda();
-    otraConsulta();
-  } else {
-    console.log(discos);
-  }
-}*/
-// otraConsulta();
-
-// console.log(encargues);
-
-//aca aplico .forEach para mostrar los discos encargados
-/*encargues.forEach((el) => {
-  console.log(el.album);
-  alert(
-    "Usted ha solicitado el disco: " +
-      el.album +
-      " del artista: " +
-      el.artista +
-      ", pronto le enviaremos novedades."
-  );
-});*/
+//armado de grilla con objetos del array
 
 let carrito = [];
 
-//armado de grilla con objetos del array
 const productos = document.getElementById("galProd");
+const vaciar = document.getElementById("vaciar");
+const addCarrito = document.getElementById("add");
 
 discos.forEach((disc) => {
   const divProd = document.createElement("div");
-  divProd.className = "col-lg-3 col-md-6 col-sd-12 gal__item";
+  divProd.className = "col-lg-2 col-md-3 col-sd-6 gal__item";
   divProd.innerHTML = `<div><img src="${disc.tapa}"/>
   <h4>${disc.artista}</h4>
   <p>${disc.album}</p>
   <p>Año: ${disc.anio}</p>
   <h6>Precio: $${disc.precio}</h6>
-  <button type="button" class="btn btn-warning" id="btn-compra">Comprar</button></div>`;
-
-  // divProd.innerHTML = `<div class="card" style="width: 18rem;">
-  // <img src="${disc.tapa}" class="card-img-top" alt="...">
-  // <div class="card-body">
-  //   <h5 class="card-title">${disc.artista}</h5>
-  //   <p class="card-text">${disc.album}</p>
-  //   <p class="card-text">${disc.anio}</p>
-  //   <h6>Precio: $${disc.precio}</h6>
-  //   <button type="button" class="btn btn-warning">Comprar</button>
-  // </div>
-  // </div>`;
-
+  <button type="button" class="btn btn-warning" onClick="agregarCarrito(${disc.id})">Agregar al carrito</button></div>`;
   productos.append(divProd);
 });
 
-const agrCarrito = document.getElementById("btn-compra");
+//funcion para agregar al carrito
+const agregarCarrito = (id) => {
+  const disc = discos.find((disco) => disco.id === id);
+  carrito.push(disc);
+  actCarrito();
+  console.log(carrito);
+};
 
-agrCarrito.addEventListener("click", (ev) => {
-  ev.preventDefault();
-  // carrito.push(vinilos);
-  // console.log(carrito);
-  console.log("hola mundo");
+//funcion para borrar item agregado al carrito
+const borrarItem = (id) => {
+  const item = carrito.find((disco) => disco.id === id);
+  const indice = carrito.indexOf(item);
+  carrito.splice(indice, 1);
+  actCarrito();
+};
+
+const contCarrito = document.getElementById("contador-carrito");
+const total = document.getElementById("total");
+
+//funcion para actualizar el estado de la informacion del carrito en el HTML y hacer conteos
+const actCarrito = () => {
+  addCarrito.innerHTML = "";
+
+  carrito.forEach((disc) => {
+    const mostProd = document.createElement("div");
+    mostProd.className = "row";
+    mostProd.innerHTML = `<div class="col-6">
+  <p>${disc.artista} - "${disc.album}"</p>
+  <hr>
+</div> <div class="col-2">
+<p> $${disc.precio}</p>
+<hr>
+</div><div class="col-2">
+<p>1</p>
+<hr>
+</div>
+<div class="col-2">
+<button type="button" class="btn-eliminar" onClick="borrarItem(${disc.id})"><i class="fa-solid fa-trash-can"></i></button>
+
+</div>`;
+    addCarrito.append(mostProd);
+  });
+  contCarrito.innerText = carrito.length;
+  total.innerText = carrito.reduce((ac, disc) => ac + disc.precio, 0);
+};
+
+//evento para vaciar el carrito
+vaciar.addEventListener("click", () => {
+  carrito.length = 0;
+  actCarrito();
+  console.log(carrito);
 });

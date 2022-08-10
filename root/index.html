@@ -14,6 +14,7 @@
     />
 
     <title>Dos naranjas Disqueria - Vinilos</title>
+    
 
     <!-- Font Awesome -->
     <script
@@ -113,7 +114,7 @@
     </div>
 
     <!-- Seccion pedidos -->
-    <section id="pedidos" class="container-fluid">
+    <section id="pedidos" class="container">
       <div class="row">
         <h2 class="col-12 text-encargues">
           <b>"En nuestra tienda podra encargar sus discos favoritos."</b>
@@ -179,7 +180,7 @@
               />
             </div>
 
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary enviar">Enviar</button>
           </form>
           <button
             type="button"
@@ -190,6 +191,7 @@
           >
             Finalizar
           </button>
+
           <!-- Modal -->
           <div
             class="modal fade"
@@ -227,9 +229,46 @@
     </section>
 
     <!-- seccion discos -->
-    <section class="container-fluid gal">
+    <section class="container gal">
       <div id="galProd" class="row"></div>
     </section>
+
+    <!-- CARRITO -->
+    <div class="container contenedor-carrito">
+      <div class="row carrito">
+        <div class="COL-12">
+            <h2>CARRITO</h2>
+            <hr>
+        </div>
+        <div class="col-6">
+          <h5>Producto</h5>
+          <hr>
+        </div>
+        <div class="col-2">
+          <h5>Precio</h5>
+          <hr>
+        </div>
+        <div class="col-4">
+          <h5>Cantidad</h5>
+          <hr>
+        </div>
+        <div id="add">
+
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <buttontype="button"
+            class="btn btn-danger" id="vaciar">Vaciar</button>
+          </div>
+          <div class="col-2">
+            <h5 class="precio">Precio total: $<span id="total">0</span></h5>
+          </div>
+          <div class="col-4">
+            <h5>Cantidad total: <span id="contador-carrito">0</span></h5>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- mapa -->
 

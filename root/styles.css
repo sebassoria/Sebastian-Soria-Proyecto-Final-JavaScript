@@ -50,31 +50,43 @@ header .nav {
 .formularios h4 {
   text-align: center;
 }
+
 .finalizar {
   margin-top: 1em;
 }
 
 /* discos */
 .gal {
-  margin: 3em 0;
+  margin: 3em auto;
   text-align: center;
 }
-
+.gal__item {
+  margin-bottom: 2em;
+}
 .gal__item div {
-  width: 60%;
+  width: 100%;
   height: 100%;
   border: 1px solid #000000;
-  border-radius: 0.5em;
-  margin-top: 5%;
+  /* border-radius: 0.5em; */
 }
 .gal__item img {
   width: 100%;
-  height: 9em;
+  height: auto;
   object-fit: contain;
 }
 .gal__item h4 {
   font-size: 1.4em;
 }
+
+/* carrito */
+.contenedor-carrito {
+  margin: 10em auto;
+}
+.carrito h2 {
+  text-align: center;
+  /* margin-top: 1em; */
+}
+
 /* mapa */
 .cont__mapa {
   margin: 0;
