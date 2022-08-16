@@ -10,7 +10,10 @@ class vinilos {
     this.id = id;
   }
 }
+
+//array de discos
 let discos = [];
+
 discos.push(
   new vinilos(
     "img/tapas/d12.jpg",
@@ -84,8 +87,7 @@ discos.push(
 );
 console.log(discos);
 
-//fin array
-
+//-------------------------------------------------------------
 //Registro de usuario para encargar discos
 const registroUsuarios = [];
 
@@ -96,6 +98,7 @@ const datos = document.getElementById("form1");
 
 datos.addEventListener("submit", (evento) => {
   evento.preventDefault();
+
   const valorUsuario = usuario.value;
   const valorEmail = email.value;
 
@@ -107,6 +110,8 @@ datos.addEventListener("submit", (evento) => {
   registroUsuarios.push(usuarios);
 
   console.log(registroUsuarios);
+
+  localStorage.setItem("users", JSON.stringify(usuarios));
 });
 
 //datos de discos a encargar
@@ -126,7 +131,6 @@ formulario.addEventListener("submit", (e) => {
   const anio = inputAnio.value;
 
   encargues.push(new vinilos("img/disc1.png", art, album, anio, "a definir"));
-  // console.log(encargues);
   formulario.reset();
 });
 
@@ -144,13 +148,15 @@ finalizar.addEventListener("click", () => {
   mensajeCargado(registroUsuarios);
 });
 
+//Mensaje de finalizado
 const mensajeCargado = () => {
   const mensajeFinal = document.getElementById("mensajeModal");
   mensajeFinal.innerHTML = `${registroUsuarios[0].Nombre},
   usted ha encargado ${encargues.length} discos.<br>
-  pronto le enviaremos un email.`;
+  Pronto le enviaremos un email.`;
 };
 
+//------------------------------------------------------------------
 //armado de grilla con objetos del array
 
 let carrito = [];
@@ -197,19 +203,19 @@ const actCarrito = () => {
   carrito.forEach((disc) => {
     const mostProd = document.createElement("div");
     mostProd.className = "row";
-    mostProd.innerHTML = `<div class="col-6">
+    mostProd.innerHTML = `
+    <div class="col-6">  
   <p>${disc.artista} - "${disc.album}"</p>
   <hr>
 </div> <div class="col-2">
 <p> $${disc.precio}</p>
 <hr>
-</div><div class="col-2">
+</div><div class="col-3">
 <p>1</p>
 <hr>
 </div>
-<div class="col-2">
-<button type="button" class="btn-eliminar" onClick="borrarItem(${disc.id})"><i class="fa-solid fa-trash-can"></i></button>
-
+<div class="col-1 btn-eliminar">
+<button type="button" onClick="borrarItem(${disc.id})"><i class="fa-solid fa-trash-can"></i></button>
 </div>`;
     addCarrito.append(mostProd);
   });
@@ -223,3 +229,47 @@ vaciar.addEventListener("click", () => {
   actCarrito();
   console.log(carrito);
 });
+
+//--------------------------------------------------------------
+//calculo de pago en cuotas
+
+let resultado;
+//funciones para sumar interes y para calcular el monto de cada cuota
+const calculoInteres = (mon, interes) => (resultado = mon + mon * interes);
+const cadaCuota = (total, cant) => (cuota = total / cant);
+
+//funcion integradora
+const montoInteres = () => {
+  const monto = Number(document.getElementById("monto").value);
+  const cantCuotas = Number(document.getElementById("cuotas").value);
+
+  if (cantCuotas === 3) {
+    calculoInteres(monto, 0.05);
+    cadaCuota(resultado, cantCuotas);
+    interes.innerText = resultado;
+    plan.innerText = cuota.toFixed(2);
+  } else if (cantCuotas === 6) {
+    calculoInteres(monto, 0.1);
+    cadaCuota(resultado, cantCuotas);
+    interes.innerText = resultado;
+    plan.innerText = cuota.toFixed(2);
+  } else if (cantCuotas === 12) {
+    calculoInteres(monto, 0.15);
+    cadaCuota(resultado, cantCuotas);
+    interes.innerText = resultado;
+    plan.innerText = cuota.toFixed(2);
+  } else if (cantCuotas === 18) {
+    calculoInteres(monto, 0.2);
+    cadaCuota(resultado, cantCuotas);
+    interes.innerText = resultado;
+    plan.innerText = cuota.toFixed(2);
+  } else {
+    form3.reset();
+    interes.innerText = 0;
+    plan.innerText = 0;
+  }
+
+  console.log(resultado);
+
+  console.log(cuota);
+};
