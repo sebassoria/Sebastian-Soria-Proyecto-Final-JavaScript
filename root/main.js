@@ -109,12 +109,12 @@ datos.addEventListener("submit", (evento) => {
 
   registroUsuarios.push(usuarios);
 
-  console.log(registroUsuarios);
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-  localStorage.setItem("users", JSON.stringify(usuarios));
+  console.log(registroUsuarios);
 });
 
-//datos de discos a encargar
+//discos a encargar
 const encargues = [];
 
 const inputArtista = document.getElementById("input-artista");
@@ -139,9 +139,11 @@ const pedidoUsuario = [];
 
 const finalizar = document.getElementById("finalizar");
 
-finalizar.addEventListener("click", () => {
+finalizar.addEventListener("click", (ev) => {
+  ev.preventDefault();
+
+  registroUsuarios.push(encargues);
   pedidoUsuario.push(registroUsuarios);
-  pedidoUsuario.push(encargues);
 
   console.log(pedidoUsuario);
 
@@ -151,7 +153,8 @@ finalizar.addEventListener("click", () => {
 //Mensaje de finalizado
 const mensajeCargado = () => {
   const mensajeFinal = document.getElementById("mensajeModal");
-  mensajeFinal.innerHTML = `${registroUsuarios[0].Nombre},
+  mensajeFinal.className = "mensaje-pedido";
+  mensajeFinal.innerHTML = `<b>${registroUsuarios[0].Nombre}</b>,
   usted ha encargado ${encargues.length} discos.<br>
   Pronto le enviaremos un email.`;
 };
@@ -159,7 +162,7 @@ const mensajeCargado = () => {
 //------------------------------------------------------------------
 //armado de grilla con objetos del array
 
-let carrito = [];
+const carrito = [];
 
 const productos = document.getElementById("galProd");
 const vaciar = document.getElementById("vaciar");
@@ -207,24 +210,26 @@ const actCarrito = () => {
     <div class="col-6">  
   <p>${disc.artista} - "${disc.album}"</p>
   <hr>
-</div> <div class="col-2">
-<p> $${disc.precio}</p>
-<hr>
-</div><div class="col-3">
-<p>1</p>
-<hr>
-</div>
-<div class="col-1 btn-eliminar">
-<button type="button" onClick="borrarItem(${disc.id})"><i class="fa-solid fa-trash-can"></i></button>
-</div>`;
+  </div> <div class="col-2">
+  <p> $${disc.precio}</p>
+  <hr>
+  </div><div class="col-3">
+  <p>1</p>
+  <hr>
+  </div>
+  <div class="col-1 btn-eliminar">
+  <button type="button" onClick="borrarItem(${disc.id})"><i class="fa-solid fa-trash-can"></i></button>
+  </div>`;
     addCarrito.append(mostProd);
   });
+
   contCarrito.innerText = carrito.length;
   total.innerText = carrito.reduce((ac, disc) => ac + disc.precio, 0);
 };
 
 //evento para vaciar el carrito
-vaciar.addEventListener("click", () => {
+vaciar.addEventListener("click", (evt) => {
+  evt.preventDefault();
   carrito.length = 0;
   actCarrito();
   console.log(carrito);
@@ -234,12 +239,16 @@ vaciar.addEventListener("click", () => {
 //calculo de pago en cuotas
 
 let resultado;
+let cuota;
+
 //funciones para sumar interes y para calcular el monto de cada cuota
 const calculoInteres = (mon, interes) => (resultado = mon + mon * interes);
 const cadaCuota = (total, cant) => (cuota = total / cant);
 
 //funcion integradora
-const montoInteres = () => {
+const montoInteres = (ev) => {
+  ev.preventDefault();
+
   const monto = Number(document.getElementById("monto").value);
   const cantCuotas = Number(document.getElementById("cuotas").value);
 
@@ -248,28 +257,38 @@ const montoInteres = () => {
     cadaCuota(resultado, cantCuotas);
     interes.innerText = resultado;
     plan.innerText = cuota.toFixed(2);
+    planCuota.innerText = ` en ${cantCuotas} cuotas`;
   } else if (cantCuotas === 6) {
     calculoInteres(monto, 0.1);
     cadaCuota(resultado, cantCuotas);
     interes.innerText = resultado;
     plan.innerText = cuota.toFixed(2);
+    planCuota.innerText = ` en ${cantCuotas} cuotas`;
   } else if (cantCuotas === 12) {
     calculoInteres(monto, 0.15);
     cadaCuota(resultado, cantCuotas);
     interes.innerText = resultado;
     plan.innerText = cuota.toFixed(2);
+    planCuota.innerText = ` en ${cantCuotas} cuotas`;
   } else if (cantCuotas === 18) {
     calculoInteres(monto, 0.2);
     cadaCuota(resultado, cantCuotas);
     interes.innerText = resultado;
     plan.innerText = cuota.toFixed(2);
+    planCuota.innerText = ` en ${cantCuotas} cuotas`;
   } else {
-    form3.reset();
-    interes.innerText = 0;
-    plan.innerText = 0;
+    interes.innerText = " NO CALCULADO";
+    plan.innerText = " NO CALCULADO";
+    planCuota.innerText = ``;
+    resultado = undefined;
+    cuota = undefined;
   }
 
-  console.log(resultado);
+  resultado
+    ? console.log(resultado)
+    : console.log("no se puede obtener un resultado");
 
-  console.log(cuota);
+  resultado ? console.log(cuota) : console.log("no se puede calcular cuotas");
+
+  resultado ? form3.reset() : (cuotas.value = "");
 };

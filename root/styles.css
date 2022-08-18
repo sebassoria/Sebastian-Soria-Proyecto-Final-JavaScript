@@ -63,7 +63,12 @@ header .nav {
 .finalizar {
   margin-top: 1em;
 }
-
+.mensaje-pedido {
+  font-size: 1.5em;
+  font-family: "Playfair Display", serif;
+  color: #764100;
+  padding: 1em;
+}
 /* discos */
 .gal {
   margin: 3em auto;
@@ -184,10 +189,10 @@ header .nav {
 }
 
 .pie-pagina .grup-2 {
-  background-color: #131313;
+  background-color: #303030;
   padding: 15px 10px;
   text-align: center;
-  color: #ffffff;
+  color: #c4710c;
 }
 .pie-pagina .grup-2 small {
   font-size: 15px;

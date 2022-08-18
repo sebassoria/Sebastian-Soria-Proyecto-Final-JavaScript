@@ -228,9 +228,9 @@
             <input type="number" class="form-control" id="cuotas" placeholder="$" />
           </div>
 
-          <button type="submit" class="btn btn-success" onclick="montoInteres()">Calcular</button>
-          <h5 class="mas-interes">Costo total en cuotas con interes: $<span id="interes">0</span></h5>
-          <h5 class="mas-interes">Monto de cada cuota: $<span id="plan">0</span></h5>
+          <button type="submit" class="btn btn-success" onclick="montoInteres(event)">Calcular</button>
+          <h5 class="mas-interes">Costo final con interes: $<span id="interes">0</span></h5>
+          <h5 class="mas-interes">Plan de pago: $<span id="plan">0</span><span id="planCuota"></span></h5>
           <h6 class="mas-interes">*El pago se realizara luego de que nos contactemos via email</h6>
         </form>
       </div>
