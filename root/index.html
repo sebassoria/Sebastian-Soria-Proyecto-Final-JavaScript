@@ -14,14 +14,26 @@
 
 
   <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/851501c68f.js" crossorigin="anonymous"></script>
+  <!-- <script src="https://kit.fontawesome.com/851501c68f.js" crossorigin="anonymous"></script> -->
+  <script src="https://kit.fontawesome.com/36a60b9127.js" crossorigin="anonymous"></script>
 
   <!-- link bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
 
+  <!-- links a archivos css de SweetAlert -->
+  <link rel="stylesheet" href="sweetalert/sweetalert2.min.css">
+  <!-- <link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css"> -->
+
+  <!-- link a toastify -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+  <!-- aos animacion -->
+  <link rel="stylesheet" href="aos/aos.css">
+
   <!-- link css -->
   <link rel="stylesheet" href="styles.css" />
+
 </head>
 
 <body>
@@ -29,7 +41,7 @@
   <header>
     <nav class="navbar navbar-expand-lg nav ">
       <div class="container-fluid ">
-        <a class="navbar-brand Logo" href="index.html"><img src="img/Logo.png" alt="" /></a>
+        <a class="navbar-brand Logo" href="index.html"><img src="img/Logo.svg" alt="Logo de discqueria dos naranjas" /></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -37,7 +49,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="#pedidos">Pedidos</a>
@@ -46,15 +58,14 @@
               <a class="nav-link active" href="#galProd">Discos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#seccion-carrito">Carrito</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#calculadora">Financiación</a>
+              <a class="nav-link active" href="#calculadora">Cuotas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="#footer">contacto</a>
             </li>
           </ul>
+          <a class="nav-link active icono-carrito" href="#" id="modal-carrito"
+              data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-cart-shopping" ></i><small id="num-carrito">0</small></a>
         </div>
       </div>
     </nav>
@@ -64,16 +75,16 @@
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="img/C1.jpg" class="d-block w-100" alt="..." />
+        <img src="img/C1.webp" class="d-block w-100" alt="Reproductor de discos de vinilo" />
       </div>
       <div class="carousel-item">
-        <img src="img/C2.jpg" class="d-block w-100" alt="..." />
+        <img src="img/C2.webp" class="d-block w-100" alt="sacando vinilo de su caja" />
       </div>
       <div class="carousel-item">
-        <img src="img/C3.jpg" class="d-block w-100" alt="..." />
+        <img src="img/C3.webp" class="d-block w-100" alt="Mujer elijiendo discos" />
       </div>
       <div class="carousel-item">
-        <img src="img/C4.jpg" class="d-block w-100" alt="..." />
+        <img src="img/C4.webp" class="d-block w-100" alt="reproduciendo musica" />
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -94,11 +105,11 @@
       </h2>
     </div>
     <div class="row justify-content-between align-items-center bienvenida">
-      <div class="col-lg-4 col-md-12 img-hombre">
+      <div data-aos="fade-right" data-aos-duration="1500" class="col-lg-4 col-md-12 img-hombre">
         <img src="img/man.png" alt="Hombre buscando musica" />
       </div>
 
-      <div class="formularios col-lg-6 col-md-12">
+      <div data-aos="fade-left" data-aos-duration="1000" class="formularios col-lg-6 col-md-12">
         <h4>Ingrese sus datos</h4>
         <form id="form1">
           <div class="mb-3">
@@ -125,34 +136,14 @@
           </div>
 
           <div class="mb-3">
-            <input type="text" class="form-control" id="input-anio" placeholder="Ingrese el año" />
+            <input type="number" class="form-control" id="input-anio" placeholder="Ingrese el año" />
           </div>
 
           <button type="submit" class="btn btn-secondary enviar">Enviar</button>
         </form>
 
         <div class="d-grid gap-2">
-          <button class="btn btn-success finalizar" type="button" id="finalizar" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">Finalizar</button>
-
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Gracias!</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body" id="mensajeModal"></div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                  Cerrar
-                </button>
-              </div>
-            </div>
-          </div>
+          <button class="btn btn-success finalizar" type="button" id="finalizar">Finalizar</button>
         </div>
       </div>
     </div>
@@ -161,63 +152,73 @@
   <!-- seccion discos -->
   <section class="container-fluid gal">
     <div id="galProd" class="row gal__prod">
-      <h2 class="col-12 text-encargues">
+      <h2 class="col-12 text-discos">
         <b>"Elija discos de nuestro catalogo"</b>
       </h2>
     </div>
   </section>
 
-  <!-- CARRITO -->
+  <!-- Modal carrito-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body container">
+          <div class="row ">
 
-  <section id="seccion-carrito" class="compras">
-    <div class="container contenedor-carrito formularios">
-      <div class="row carrito">
-  
-        <div class="col-12 img-carrito">
-          <img src="img/carrito.png" alt="carrito de compras">
-          <hr>
-        </div>
-        <div class="col-6">
-          <h5>Producto</h5>
-          <hr>
-        </div>
-        <div class="col-2">
-          <h5>Precio</h5>
-          <hr>
-        </div>
-        <div class="col-4">
-          <h5>Cantidad</h5>
-          <hr>
-        </div>
-        <div id="add">
-  
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <buttontype="button" class="btn btn-warning" id="vaciar">Vaciar carrito</button>
+            <div class="col-12 img-carrito">
+              <img src="img/carrito.png" alt="carrito de compras">
+              <hr>
+            </div>
+            <div class="col-6">
+              <h5>Producto</h5>
+              <hr>
+            </div>
+            <div class="col-3">
+              <h5>Precio</h5>
+              <hr>
+            </div>
+            <div class="col-3">
+              <h5>Cantidad</h5>
+              <hr>
+            </div>
+            <div id="add">
+
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <buttontype="button" class="btn btn-warning" id="vaciar">Vaciar carrito</button>
+              </div>
+              <div class="col-3">
+                <h5 class="precio">Precio total: $<span id="total">0</span></h5>
+              </div>
+              <div class="col-3">
+                <h5>Cant. total: <span id="contador-carrito">0</span></h5>
+              </div>
+            </div>
           </div>
-          <div class="col-2">
-            <h5 class="precio">Precio total: $<span id="total">0</span></h5>
-          </div>
-          <div class="col-4">
-            <h5>Cantidad total: <span id="contador-carrito">0</span></h5>
-          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
         </div>
       </div>
     </div>
-  </section>
-
+  </div>
   <!-- calculador de cuotas -->
 
   <section id="calculadora" class="container">
     <div class="row">
-      <h2 class="col-12 text-encargues">
+      <h2 class="col-12 text-calculo">
         <b>Calcule su pago en cuotas</b>
       </h2>
     </div>
     <div class="row justify-content-between align-items-center bienvenida">
 
-      <div class="formularios col-lg-6 col-md-12 pago">
+      <div data-aos="zoom-in-down" data-aos-duration="1500" class="formularios col-lg-6 col-md-12 pago">
         <form id="form3">
           <div class="mb-3">
             <label class="form-label">Ingrese el monto total de su compra</label>
@@ -229,26 +230,26 @@
           </div>
 
           <button type="submit" class="btn btn-success" onclick="montoInteres(event)">Calcular</button>
-          <h5 class="mas-interes">Costo final con interes: $<span id="interes">0</span></h5>
-          <h5 class="mas-interes">Plan de pago: $<span id="plan">0</span><span id="planCuota"></span></h5>
+          <h5 class="mas-interes">Costo final con interes: <span id="interes" class="result">$0</span></h5>
+          <h5 class="mas-interes">Plan de pago: <span id="plan" class="result">$0</span><span id="planCuota"
+              class="result"></span></h5>
           <h6 class="mas-interes">*El pago se realizara luego de que nos contactemos via email</h6>
         </form>
       </div>
-      <div class="col-lg-4 col-md-12 ">
+      <div class="col-lg-6 col-md-12 img-calc">
         <img src="img/calc.png" alt="calculadora" />
       </div>
     </div>
   </section>
 
   <!-- footer -->
-
   <footer id="footer" class="container-fluid pie-pagina">
     <div class="row grup-1">
-      <div class="col-4 box">
+      <div class="col-lg-4 col-md-6 box">
         <div class="box-a">
           <h2>DÓNDE ENCONTRARNOS</h2>
           <p>
-            <i class="fa-solid fa-location-dot"></i> Av. Rivadavia 2430 -
+            <i class="fa-solid fa-location-dot"></i> Av. Inventada 2430 -
             Rosario
           </p>
           <h2>MEDIOS DE PAGO</h2>
@@ -262,15 +263,15 @@
           </p>
         </div>
       </div>
-      <div class="col-4 box">
+      <div class="col-lg-4 col-md-12 box">
         <figure>
           <a class="Logo" href="index.html">
-            <img src="img/Logo.png" alt="logo dosnaranja" />
+            <img src="img/Logo.svg" alt="logo dosnaranja" />
           </a>
         </figure>
       </div>
 
-      <div class="col-4 box">
+      <div class="col-lg-4 col-md-6 box">
         <div class="box-b">
           <h2>CONTACTANOS</h2>
           <div class="red-social">
@@ -293,7 +294,21 @@
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
   </script>
 
+  <!-- script para aplicacion de javascript -->
   <script src="main.js"></script>
+
+  <!-- script de SweetAlert2 -->
+  <script src="sweetalert/sweetalert2.all.min.js"></script>
+
+  <!-- script de toastify -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+  <!-- scripp aos -->
+  <script src="aos/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
 </body>
 
 </html>

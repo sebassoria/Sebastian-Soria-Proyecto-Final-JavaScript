@@ -39,14 +39,22 @@ header .nav {
   text-align: center;
   padding-top: 1.7em;
   margin-top: 2em;
+  margin-bottom: .5em;
 }
-.text-encargues b {
+.text-discos{
+  text-align: center;
+  padding-top: 1.7em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.text-encargues b, .text-discos b {
   color: var(--color1);
   font-size: 1.3em;
   font-family: "Playfair Display", serif;
 }
 .img-hombre img {
   text-align: center;
+  width: 100%;
 }
 
 .formularios h4 {
@@ -76,10 +84,12 @@ header .nav {
 }
 .gal__prod {
   margin-bottom: 1em;
+  margin-top: 1em;
 }
 .gal__item {
   margin: 1.5em auto;
   padding: 0 2em;
+
 }
 .gal__item div {
   background-color: #ffffff;
@@ -87,6 +97,7 @@ header .nav {
   height: 100%;
   border: 1px solid #000000;
   padding-bottom: 0.5em;
+  box-shadow: 5px 5px 6px #696969;
 }
 .gal__item img {
   width: 100%;
@@ -98,33 +109,52 @@ header .nav {
 }
 
 /* carrito */
-
-.compras {
-  margin-top: 5em;
-  margin-bottom: 5em;
-  padding-top: 21em;
-  padding-bottom: 21em;
+.icono-carrito{
+  color:#000000;
+  font-size: 1.2em;
+  padding-right: 2em;
 }
 .contenedor-carrito {
   padding: 1.5em;
 }
-
 .img-carrito img {
   width: 5em;
 }
 .img-carrito {
   text-align: center;
 }
-.btn-eliminar {
+.cont-eliminar {
   text-align: center;
 }
+.btn-eliminar {
+  color:red;
+  border-style: none;
+}
+
 /* calculadora cuotas */
+
+.text-calculo{
+  text-align: center;
+  padding-top: 1.7em;
+  margin-top: 2.5em;
+}
+.text-calculo b{
+  color: var(--color1);
+  font-size: 1.3em;
+  font-family: "Playfair Display", serif;
+}
+.img-calc{
+  text-align: center;
+}
 .mas-interes {
   padding-top: 1em;
 }
 .pago {
   margin-top: 5em;
   margin-bottom: 8em;
+}
+.result {
+  color: var(--color1);
 }
 
 /* footer */
