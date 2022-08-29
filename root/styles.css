@@ -132,14 +132,21 @@ header .nav {
 }
 
 /* calculadora cuotas */
-
+.cont-calc{
+  background-color: #303030;
+}
+.formulario-calc{
+  background-color: #ffffff;
+  border-radius: 0.5em;
+  padding: .8em;
+}
 .text-calculo{
   text-align: center;
   padding-top: 1.7em;
   margin-top: 2.5em;
 }
 .text-calculo b{
-  color: var(--color1);
+  color: var(--color3);
   font-size: 1.3em;
   font-family: "Playfair Display", serif;
 }
@@ -157,6 +164,16 @@ header .nav {
   color: var(--color1);
 }
 
+/* conciertos */
+.cont-concerts{
+  margin-bottom: 8em; 
+}
+.cont-cards{
+  margin-top: 1.5em;
+}
+.cont-cards .card{
+  box-shadow: 5px 5px 6px #696969;
+}
 /* footer */
 
 .pie-pagina {

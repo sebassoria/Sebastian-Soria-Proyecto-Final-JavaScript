@@ -1,3 +1,31 @@
+
+const info = document.getElementById("gal-info")
+fetch("https://api.seatgeek.com/2/events?client_id=Mjg3NDA3NDN8MTY2MTcyNTQ4MS41NTc4MDI3&client_secret=6d096b6a510ccc4fe3ca6786ad5b805e3976fe09043c7faafbfd203b90c387e6")
+  .then((res) => res.json())
+  .then((data) => {
+
+    console.log(data)
+
+    data.events.forEach(element => {
+      if (element.type === 'concert') {
+        const div = document.createElement("div")
+        div.className = "col-lg-4 col-md-6 cont-cards"
+        div.innerHTML = `
+          <div class="card" style="width: 18rem; height: 100%;">
+          <img src="${element.performers[0].image}" class="card-img-top" alt="imagen de concierto">
+            <div class="card-body">
+              <h5 class="card-title">${element.title}</h5>
+              <p class="card-text">Lugar: ${element.venue.name}</p>
+              <p class="card-text">Ciudad, Pais: ${element.venue.city}, ${element.venue.country}</p>
+              <p class="card-text">Tickets: <a href="${element.venue.url}">${element.venue.url}</a></p>
+            </div>
+          </div>`
+        info.append(div)
+      }
+    });
+  });
+ 
+
 //Array de objetos discos en stock
 
 class vinilos {
@@ -184,7 +212,7 @@ const agregarCarrito = (id) => {
   const disc = discos.find((disco) => disco.id === id);
   carrito.push(disc);
   actCarrito();
-  
+
   console.log(carrito);
 
   Toastify({
@@ -253,15 +281,15 @@ vaciar.addEventListener("click", (evt) => {
 
 const modalCarrito = document.getElementById("modal-carrito");
 
-modalCarrito.addEventListener('click',(even)=>{
+modalCarrito.addEventListener('click', (even) => {
   even.preventDefault();
-  actCarrito(); 
+  actCarrito();
 });
 
 //--------------------------------------------------------------------------
 //calculo de pago en cuotas
 
-const calcOk = ()=>{
+const calcOk = () => {
   Swal.fire({
     position: "center",
     icon: "success",

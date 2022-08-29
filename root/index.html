@@ -41,7 +41,8 @@
   <header>
     <nav class="navbar navbar-expand-lg nav ">
       <div class="container-fluid ">
-        <a class="navbar-brand Logo" href="index.html"><img src="img/Logo.svg" alt="Logo de discqueria dos naranjas" /></a>
+        <a class="navbar-brand Logo" href="index.html"><img src="img/Logo.svg"
+            alt="Logo de discqueria dos naranjas" /></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -61,11 +62,15 @@
               <a class="nav-link active" href="#calculadora">Cuotas</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link active" href="#gal-info">Conciertos</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active" href="#footer">contacto</a>
             </li>
           </ul>
-          <a class="nav-link active icono-carrito" href="#" id="modal-carrito"
-              data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-cart-shopping" ></i><small id="num-carrito">0</small></a>
+          <a class="nav-link active icono-carrito" href="#" id="modal-carrito" data-bs-toggle="modal"
+            data-bs-target="#exampleModal"><i class="fa-solid fa-cart-shopping"></i><small
+              id="num-carrito">0</small></a>
         </div>
       </div>
     </nav>
@@ -210,7 +215,7 @@
   </div>
   <!-- calculador de cuotas -->
 
-  <section id="calculadora" class="container">
+  <section id="calculadora" class="container-fluid cont-calc">
     <div class="row">
       <h2 class="col-12 text-calculo">
         <b>Calcule su pago en cuotas</b>
@@ -218,7 +223,7 @@
     </div>
     <div class="row justify-content-between align-items-center bienvenida">
 
-      <div data-aos="zoom-in-down" data-aos-duration="1500" class="formularios col-lg-6 col-md-12 pago">
+      <div data-aos="zoom-in-down" data-aos-duration="1500" class="formulario-calc col-lg-6 col-md-12 pago">
         <form id="form3">
           <div class="mb-3">
             <label class="form-label">Ingrese el monto total de su compra</label>
@@ -241,6 +246,19 @@
       </div>
     </div>
   </section>
+
+  <!-- seccion informacion de eventos internacionales tomadas de la API SeatGeek -->
+
+  <section class="container"> 
+      
+    <div id="gal-info" class="row justify-content-center cont-concerts">
+      <h2 class="col-12 text-discos">
+        <b>Proximos conciertos internacionales</b>
+      </h2>
+    </div>
+  
+</section>
+
 
   <!-- footer -->
   <footer id="footer" class="container-fluid pie-pagina">
