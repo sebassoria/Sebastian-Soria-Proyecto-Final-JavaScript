@@ -14,22 +14,30 @@ fetch("https://api.seatgeek.com/2/events?client_id=Mjg3NDA3NDN8MTY2MTcyNTQ4MS41N
 
     console.log(conciertos)
 
-    conciertos.forEach(element => {
-      const div = document.createElement("div")
-      div.className = "col-lg-3 col-md-6 cont-cards"
-      div.innerHTML = `
-          <div class="card" style="width: 18rem; height: 100%;">
-          <img src="${element.performers[0].image}" class="card-img-top" alt="imagen de concierto">
-            <div class="card-body">
-              <h5 class="card-title api-art">${element.title}</h5>
-              <p class="card-text"><b>Lugar: </b>${element.venue.name}</p>
-              <p class="card-text"><b>Ciudad, Pais: </b>${element.venue.city}, ${element.venue.country}</p>
-              <p class="card-text"><b>Tickets: </b><a class="ticket" href="${element.venue.url}">${element.venue.url}</a></p>
-            </div>
-          </div>`
-      info.append(div)
-    });
+    if (conciertos == '') {
+      console.log("no hay conciertos para mostrar")
+      const sinConciertos=document.createElement("div")
+      sinConciertos.className = "col-12 sin-conciertos"
+      sinConciertos.innerHTML = `<p>En el dia de la fecha SeatGeek no muestra ningun concierto</p>`
+        info.append(sinConciertos)
+    } else {
 
+      conciertos.forEach(element => {
+        const div = document.createElement("div")
+        div.className = "col-lg-3 col-md-6 cont-cards"
+        div.innerHTML = `
+            <div class="card" style="width: 18rem; height: 100%;">
+            <img src="${element.performers[0].image}" class="card-img-top" alt="imagen de concierto">
+              <div class="card-body">
+                <h5 class="card-title api-art">${element.title}</h5>
+                <p class="card-text"><b>Lugar: </b>${element.venue.name}</p>
+                <p class="card-text"><b>Ciudad, Pais: </b>${element.venue.city}, ${element.venue.country}</p>
+                <p class="card-text"><b>Tickets: </b><a class="ticket" href="${element.venue.url}">${element.venue.url}</a></p>
+              </div>
+            </div>`
+        info.append(div)
+      });
+    }
 
   });
 
@@ -205,8 +213,8 @@ const mensajeCargado = () => {
 let carrito = [];
 
 //en este evento si encuentra en localstorage, parsea con JSON y recupera en el carrito
-document.addEventListener('DOMContentLoaded', ()=>{
-  if(localStorage.getItem('carrito')){
+document.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('carrito')) {
     carrito = JSON.parse(localStorage.getItem('carrito'));
     actCarrito();
   }
@@ -236,10 +244,10 @@ const numCarrito = document.getElementById("num-carrito");
 const botonFinalizar = document.getElementById("modal-footer");
 const addCarrito = document.getElementById("add");
 
+
 const actCarrito = () => {
 
   addCarrito.innerHTML = "";
-
   carrito.forEach((disc) => {
     const mostProd = document.createElement("div");
     mostProd.className = "row";
@@ -265,6 +273,7 @@ const actCarrito = () => {
   const total = carrito.reduce((ac, disc) => ac + disc.precio, 0);
 
   if (carrito.length !== 0) {
+    //para que aparezca el boton de vaciar el carrito
     btnVaciar.innerHTML = ""
     const mostrVaciar = document.createElement("div")
     mostrVaciar.className = "row"
@@ -279,8 +288,8 @@ const actCarrito = () => {
       <h5>Cant. total: <span>${carrito.length}</span></h5>
     </div>`
     btnVaciar.append(mostrVaciar);
-    
 
+    //finalizar la compra
     botonFinalizar.innerHTML = ""
 
     const mostrFinalizar = document.createElement("div")
@@ -292,16 +301,16 @@ const actCarrito = () => {
     botonFinalizar.innerHTML = ""
   }
 
+  //para el icono del carrito en el navegador
   numCarrito.innerText = carrito.length;
 
-  localStorage.setItem("carrito",JSON.stringify(carrito));
+  localStorage.setItem("carrito", JSON.stringify(carrito));
 
 };
-
+//fin render carrito
 
 
 //funcion para agregar al carrito
-
 const agregarCarrito = (id) => {
   const disc = discos.find((disco) => disco.id === id);
   carrito.push(disc);

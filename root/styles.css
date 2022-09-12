@@ -5,7 +5,7 @@
 }
 :root {
   --color1: #764100;
-  --color2: #985484;
+  --color2: #000000;
   --color3: #ffffff;
 }
 body {
@@ -71,12 +71,6 @@ header .nav {
 .finalizar {
   margin-top: 1em;
 }
-/* .mensaje-pedido {
-  font-size: 1.5em;
-  font-family: "Playfair Display", serif;
-  color: var(--color1);
-  padding: 1em;
-} */
 
 /* discos */
 .gal {
@@ -195,6 +189,13 @@ padding-bottom: 13em;
 .cont-cards .card{
   box-shadow: 9px 9px 6px #404040;
   margin:0 auto;
+}
+.sin-conciertos p{
+  color: var(--color2);
+  font-size: 2em;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  padding: 3em;
 }
 /* footer */
 
