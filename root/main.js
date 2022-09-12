@@ -18,7 +18,7 @@ fetch("https://api.seatgeek.com/2/events?client_id=Mjg3NDA3NDN8MTY2MTcyNTQ4MS41N
       console.log("no hay conciertos para mostrar")
       const sinConciertos=document.createElement("div")
       sinConciertos.className = "col-12 sin-conciertos"
-      sinConciertos.innerHTML = `<p>En el dia de la fecha SeatGeek no muestra ningun concierto</p>`
+      sinConciertos.innerHTML = `<p>En el día de la fecha SeatGeek no muestra ningún concierto</p>`
         info.append(sinConciertos)
     } else {
 
