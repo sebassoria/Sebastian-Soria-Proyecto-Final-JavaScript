@@ -23,7 +23,6 @@
 
   <!-- links a archivos css de SweetAlert -->
   <link rel="stylesheet" href="sweetalert/sweetalert2.min.css">
-  <!-- <link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css"> -->
 
   <!-- link a toastify -->
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -41,7 +40,7 @@
   <header>
     <nav class="navbar navbar-expand-lg nav ">
       <div class="container-fluid ">
-        <a class="navbar-brand Logo" href="index.html"><img src="img/Logo.svg"
+        <a class="navbar-brand Logo" href="index.html"><img src="img/Logox.svg"
             alt="Logo de discqueria dos naranjas" /></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,33 +103,27 @@
 
   <!-- Seccion pedidos -->
   <section id="pedidos" class="container">
-    <div class="row">
-      <h2 class="col-12 text-encargues">
-        <b>"En nuestra tienda podra encargar sus discos favoritos"</b>
-      </h2>
-    </div>
+
     <div class="row justify-content-between align-items-center bienvenida">
-      <div data-aos="fade-right" data-aos-duration="1500" class="col-lg-4 col-md-12 img-hombre">
-        <img src="img/man.png" alt="Hombre buscando musica" />
+      <div data-aos="fade-right" data-aos-duration="1500" class="col-lg-5 col-md-12 img-hombre">
+        <img src="img/man.svg" alt="Hombre buscando musica" />
       </div>
 
-      <div data-aos="fade-left" data-aos-duration="1000" class="formularios col-lg-6 col-md-12">
-        <h4>Ingrese sus datos</h4>
+      <div data-aos="fade-left" data-aos-duration="1000" class="formularios col-lg-7 col-md-12">
+        <h4>Registre sus datos</h4>
         <form id="form1">
           <div class="mb-3">
-            <label class="form-label">Nombre y Apellido</label>
-            <input type="text" class="form-control" id="usuario" placeholder="Nombre y apellido" />
+            <input type="text" class="form-control form-style" id="usuario" placeholder="Nombre y apellido" />
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="name@example.com" />
+            <input type="email" class="form-control" id="email" placeholder="Email" />
           </div>
 
-          <button type="submit" class="btn btn-secondary">Enviar</button>
+          <button type="submit" class="btn btn-warning">Enviar</button>
         </form>
 
-        <h4>Encargue su disco</h4>
+        <h4>Encargue sus discos</h4>
         <form id="form2">
           <div class="mb-3">
             <input type="text" class="form-control" id="input-artista" placeholder="Nombre del artista" />
@@ -144,22 +137,23 @@
             <input type="number" class="form-control" id="input-anio" placeholder="Ingrese el año" />
           </div>
 
-          <button type="submit" class="btn btn-secondary enviar">Enviar</button>
+          <button type="submit" class="btn btn-warning enviar">Enviar</button>
         </form>
 
         <div class="d-grid gap-2">
-          <button class="btn btn-success finalizar" type="button" id="finalizar">Finalizar</button>
+          <button class="btn btn-secondary finalizar" type="button" id="finalizar">Finalizar</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- seccion discos -->
-  <section class="container-fluid gal">
+  <section class="container gal">
     <div id="galProd" class="row gal__prod">
       <h2 class="col-12 text-discos">
-        <b>"Elija discos de nuestro catalogo"</b>
+        <b>Discos disponibles</b>
       </h2>
+      <!-- render de productos -->
     </div>
   </section>
 
@@ -174,90 +168,89 @@
           <div class="row ">
 
             <div class="col-12 img-carrito">
-              <img src="img/carrito.png" alt="carrito de compras">
-              <hr>
+              <img src="img/carrito.svg" alt="carrito de compras">
             </div>
             <div class="col-6">
               <h5>Producto</h5>
-              <hr>
             </div>
             <div class="col-3">
               <h5>Precio</h5>
-              <hr>
             </div>
             <div class="col-3">
               <h5>Cantidad</h5>
-              <hr>
             </div>
+            <hr>
             <div id="add">
 
             </div>
-            <div class="row">
-              <div class="col-6">
-                <buttontype="button" class="btn btn-warning" id="vaciar">Vaciar carrito</button>
-              </div>
-              <div class="col-3">
-                <h5 class="precio">Precio total: $<span id="total">0</span></h5>
-              </div>
-              <div class="col-3">
-                <h5>Cant. total: <span id="contador-carrito">0</span></h5>
-              </div>
+            <div id="btn-vaciar">
+              <!-- render de boton para vaciar el carrito -->
             </div>
           </div>
         </div>
 
         <div class="modal-footer">
+          <div id="modal-footer">
+            <!-- render boton finalizar compra -->
+          </div>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-
         </div>
       </div>
     </div>
   </div>
   <!-- calculador de cuotas -->
 
-  <section id="calculadora" class="container-fluid cont-calc">
-    <div class="row">
-      <h2 class="col-12 text-calculo">
-        <b>Calcule su pago en cuotas</b>
-      </h2>
-    </div>
-    <div class="row justify-content-between align-items-center bienvenida">
-
-      <div data-aos="zoom-in-down" data-aos-duration="1500" class="formulario-calc col-lg-6 col-md-12 pago">
-        <form id="form3">
-          <div class="mb-3">
-            <label class="form-label">Ingrese el monto total de su compra</label>
-            <input type="number" class="form-control" id="monto" placeholder="$" />
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Elija entre 3, 6, 12, o 18 cuotas</label>
-            <input type="number" class="form-control" id="cuotas" placeholder="$" />
-          </div>
-
-          <button type="submit" class="btn btn-success" onclick="montoInteres(event)">Calcular</button>
-          <h5 class="mas-interes">Costo final con interes: <span id="interes" class="result">$0</span></h5>
-          <h5 class="mas-interes">Plan de pago: <span id="plan" class="result">$0</span><span id="planCuota"
-              class="result"></span></h5>
-          <h6 class="mas-interes">*El pago se realizara luego de que nos contactemos via email</h6>
-        </form>
+  <section class="cont-calc">
+    <div id="calculadora" class="container">
+      <div class="row">
+        <h2 class="col-12 text-calculo">
+          <b>Calcule su pago en cuotas</b>
+        </h2>
       </div>
-      <div class="col-lg-6 col-md-12 img-calc">
-        <img src="img/calc.png" alt="calculadora" />
+      <div class="row justify-content-between align-items-center cont-calculadora">
+
+        <div data-aos="zoom-in-down" data-aos-duration="1500" class="formulario-calc col-lg-7 col-md-12">
+          <form id="form3">
+            <div class="mb-3">
+              <label class="form-label">Ingrese el monto total de su compra</label>
+              <input type="number" class="form-control" id="monto" placeholder="$" />
+            </div>
+
+            <label class="form-label">Elija entre 3, 6, 12, o 18 cuotas</label>
+            <select class="form-select mb-3" aria-label="Default select example" id="cuotas">
+              <option selected>Seleccione cantidad de cuotas</option>
+              <option value="3">3</option>
+              <option value="6">6</option>
+              <option value="12">12</option>
+              <option value="18">18</option>
+            </select>
+
+            <button type="submit" class="btn btn-warning" onclick="montoInteres(event)">Calcular</button>
+            <h4 class="mas-interes">Costo final con interés: <span id="interes" class="result">$0</span></h4>
+            <h4 class="mas-interes">Plan de pago: <span id="planCuota" class="result"></span><span id="plan"
+                class="result">$0</span></h4>
+            <h6 class="mas-interes">*Nos comunicaremos vía email para concretar el pago</h6>
+          </form>
+        </div>
+        <div class="col-lg-5 col-md-12 text-center">
+          <img class="img-calc" src="img/calculadora.webp" alt="calculadora" />
+        </div>
       </div>
     </div>
   </section>
 
   <!-- seccion informacion de eventos internacionales tomadas de la API SeatGeek -->
 
-  <section class="container"> 
-      
-    <div id="gal-info" class="row justify-content-center cont-concerts">
+  <section class="container-fluid concert">
+
+    <div id="gal-info" class="row justify-content-evenly cont-concerts">
       <h2 class="col-12 text-discos">
-        <b>Proximos conciertos internacionales</b>
+        <b>Conciertos internacionales del día</b>
       </h2>
+      <!-- api de conciertos -->
     </div>
-  
-</section>
+
+  </section>
 
 
   <!-- footer -->
@@ -283,18 +276,19 @@
       </div>
       <div class="col-lg-4 col-md-12 box">
         <figure>
-          <a class="Logo" href="index.html">
-            <img src="img/Logo.svg" alt="logo dosnaranja" />
+          <a class="Logo-footer" href="index.html">
+            <img src="img/Logox.svg" alt="logo dosnaranja" />
           </a>
         </figure>
       </div>
 
       <div class="col-lg-4 col-md-6 box">
         <div class="box-b">
-          <h2>CONTACTANOS</h2>
+          <h2>CONTACTO</h2>
           <div class="red-social">
-            <a href="#" class="fa fa-facebook"></a>
-            <a href="#" class="fa fa-instagram"></a>
+            <a href="https://www.linkedin.com/in/sebastian-soria-frontend/" class="fa-brands fa-linkedin"
+              target="_blank"></a>
+            <a href="https://github.com/sebassoria" class="fa-brands fa-square-github" target="_blank"></a>
             <a href="#" class="fa fa-whatsapp"></a>
           </div>
         </div>

@@ -22,22 +22,23 @@ header .nav {
 }
 
 .nav {
-  background-color: #ffffffde;
+  background-color: #ffffffc6;
   font-family: "Playfair Display", serif;
   font-size: 1.5em;
   padding: 0;
 }
 .Logo img {
-  width: 130px;
+  width: 7.5em;
 }
 
 /* bienvenida + Encargues*/
 .bienvenida {
-  padding: 4em;
+ padding: 8.5em 4em 8.5em 4em;
+ 
 }
 .text-encargues {
   text-align: center;
-  padding-top: 1.7em;
+  padding-top: .9em;
   margin-top: 2em;
   margin-bottom: .5em;
 }
@@ -47,9 +48,9 @@ header .nav {
   margin-top: 2em;
   margin-bottom: 2em;
 }
-.text-encargues b, .text-discos b {
+.text-discos b {
   color: var(--color1);
-  font-size: 1.3em;
+  font-size: 1.5em;
   font-family: "Playfair Display", serif;
 }
 .img-hombre img {
@@ -61,22 +62,22 @@ header .nav {
   text-align: center;
 }
 .formularios {
-  padding: 0.8em;
+  padding: 1.8em;
   box-shadow: -2px 10px 43px -3px rgba(0, 0, 0, 0.42);
   -webkit-box-shadow: -2px 10px 43px -3px rgba(0, 0, 0, 0.42);
   -moz-box-shadow: -2px 10px 43px -3px rgba(0, 0, 0, 0.42);
   border-radius: 0.5em;
-  background-image: linear-gradient(135deg, #fdfcfb 0%, #fdf3eb 100%);
 }
 .finalizar {
   margin-top: 1em;
 }
-.mensaje-pedido {
+/* .mensaje-pedido {
   font-size: 1.5em;
   font-family: "Playfair Display", serif;
-  color: #764100;
+  color: var(--color1);
   padding: 1em;
-}
+} */
+
 /* discos */
 .gal {
   margin: 3em auto;
@@ -88,7 +89,7 @@ header .nav {
 }
 .gal__item {
   margin: 1.5em auto;
-  padding: 0 2em;
+  padding: 0 1.5em;
 
 }
 .gal__item div {
@@ -118,10 +119,11 @@ header .nav {
   padding: 1.5em;
 }
 .img-carrito img {
-  width: 5em;
+  width: 4em;
 }
 .img-carrito {
   text-align: center;
+  padding-bottom: 1em;
 }
 .cont-eliminar {
   text-align: center;
@@ -129,16 +131,22 @@ header .nav {
 .btn-eliminar {
   color:red;
   border-style: none;
+  background: none;
 }
 
 /* calculadora cuotas */
+
 .cont-calc{
   background-color: #303030;
+}
+.cont-calculadora{
+  padding-top: 3em;
+  padding-bottom: 13em;
 }
 .formulario-calc{
   background-color: #ffffff;
   border-radius: 0.5em;
-  padding: .8em;
+  padding: 1.2em;
 }
 .text-calculo{
   text-align: center;
@@ -147,45 +155,53 @@ header .nav {
 }
 .text-calculo b{
   color: var(--color3);
-  font-size: 1.3em;
+  font-size: 1.5em;
   font-family: "Playfair Display", serif;
 }
 .img-calc{
   text-align: center;
+  width: 90%;
+  padding: 3em;
+  border-radius: 100%;
 }
 .mas-interes {
   padding-top: 1em;
 }
-.pago {
-  margin-top: 5em;
-  margin-bottom: 8em;
-}
+
 .result {
   color: var(--color1);
 }
 
 /* conciertos */
+.concert{
+  background-image: url(img/concierto.webp);
+  background-size: cover;
+}
+.ticket{
+  text-decoration: none;
+  color:  var(--color1);
+}
+.api-art{
+  color: var(--color1);
+}
 .cont-concerts{
-  margin-bottom: 8em; 
+padding-bottom: 13em; 
 }
 .cont-cards{
-  margin-top: 1.5em;
+  padding: 0;
+  margin-top: 1em;
+  margin-bottom: 1em;  
 }
 .cont-cards .card{
-  box-shadow: 5px 5px 6px #696969;
+  box-shadow: 9px 9px 6px #404040;
+  margin:0 auto;
 }
 /* footer */
 
 .pie-pagina {
-  background: rgb(255, 255, 255);
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(0, 0, 0, 1) 53%
-  );
+  background-color: #111111;
 }
 .pie-pagina .grup-1 {
-  background-position: 0%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -199,7 +215,10 @@ header .nav {
 .box-b {
   text-align: center;
 }
-
+.Logo-footer img {
+  width: 12em;
+  margin: 1.5em 0 1.5em 0;
+}
 .pie-pagina .grup-1 .box figure {
   width: 100%;
   display: flex;
@@ -211,35 +230,38 @@ header .nav {
   font-family: "Playfair Display", serif;
   font-style: normal;
   font-weight: bold;
-  color: #764100;
-  font-size: 20px;
+  color: var(--color1);
+  font-size: 1.6em;
 }
 .pie-pagina .grup-1 .box p {
   font-family: "Playfair Display", serif;
   font-size: 15px;
-  color: #c4710c;
+  color: #da8300;
   margin-bottom: 10px;
 }
-.pie-pagina .grup-1 .red-social a {
-  display: inline-block;
+.red-social{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ .red-social a {
+  padding: .4em;
   text-decoration: none;
-  width: 45px;
-  height: 45px;
-  line-height: 45px;
-  color: #c4710c;
-  margin-right: 10px;
+  width: 2em;
+  font-size: 1.8em;
+  color: #da8300;
   text-align: center;
   transition: all 300ms ease;
 }
-.pie-pagina .grup-1 .red-social a:hover {
+.red-social a:hover {
   color: #ffffff;
 }
 
 .pie-pagina .grup-2 {
   background-color: #303030;
-  padding: 15px 10px;
+  padding: 1.5em 0;
   text-align: center;
-  color: #c4710c;
+  color: #909090;
 }
 .pie-pagina .grup-2 small {
   font-size: 15px;
