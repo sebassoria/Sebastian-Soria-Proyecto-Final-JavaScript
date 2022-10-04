@@ -1,21 +1,18 @@
+
 //--------------------------------------------------------------------------
 //fetch
 
 const info = document.getElementById("gal-info")
-fetch("https://api.seatgeek.com/2/events?client_id=Mjg3NDA3NDN8MTY2MTcyNTQ4MS41NTc4MDI3&client_secret=6d096b6a510ccc4fe3ca6786ad5b805e3976fe09043c7faafbfd203b90c387e6")
+
+ fetch("https://api.seatgeek.com/2/events?client_id=Mjg3NDA3NDN8MTY2MTcyNTQ4MS41NTc4MDI3&client_secret=6d096b6a510ccc4fe3ca6786ad5b805e3976fe09043c7faafbfd203b90c387e6")
   .then((res) => res.json())
   .then((data) => {
-
-    console.log(data)
 
     const conciertos = data.events.filter(elem => {
       return elem.type === 'concert'
     });
 
-    console.log(conciertos)
-
     if (conciertos == '') {
-      console.log("no hay conciertos para mostrar")
       const sinConciertos=document.createElement("div")
       sinConciertos.className = "col-12 sin-conciertos"
       sinConciertos.innerHTML = `<p>En el día de la fecha SeatGeek no muestra ningún concierto</p>`
@@ -38,9 +35,7 @@ fetch("https://api.seatgeek.com/2/events?client_id=Mjg3NDA3NDN8MTY2MTcyNTQ4MS41N
         info.append(div)
       });
     }
-
   });
-
 
 //--------------------------------------------------------------------------
 //Array de objetos discos en stock
@@ -95,11 +90,11 @@ discos.push(
 discos.push(
   new vinilos("img/tapas/d4.webp", "The Beatles", "abbey road", 1969, 6700, 12)
 );
-console.log(discos);
+
 
 //--------------------------------------------------------------------------
 //Registro de usuario para encargar discos
-const registroUsuarios = [];
+let registroUsuarios = [];
 
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("email");
@@ -135,13 +130,13 @@ datos.addEventListener("submit", (evento) => {
       showConfirmButton: false,
       timer: 1100,
     });
-    console.log(registroUsuarios);
+ 
   }
 });
 
 //--------------------------------------------------------------------------
 //para encargar discos
-const encargues = [];
+let encargues = [];
 
 const inputArtista = document.getElementById("input-artista");
 const inputAlbum = document.getElementById("input-album");
@@ -154,18 +149,25 @@ formulario.addEventListener("submit", (e) => {
   if (inputArtista.value === "" || inputAlbum.value === "" || inputAnio.value === "") {
     faltaAlgunDato()
   } else {
+
+      Swal.fire({
+        icon: "success",
+        title: "Disco cargado con éxito",
+        text: "Puede agregar otro álbum o finalizar su carga",
+      });
+    
     const art = inputArtista.value;
     const album = inputAlbum.value;
     const anio = inputAnio.value;
 
     encargues.push(new vinilos("img/disc1.svg", art, album, anio, "a definir"));
-    console.log(encargues);
+   
     formulario.reset();
   };
 });
 //--------------------------------------------------------------------------
 //boton finalizar
-const pedidoUsuario = [];
+let pedidoUsuario = [];
 
 const finalizar = document.getElementById("finalizar");
 
@@ -173,13 +175,15 @@ finalizar.addEventListener("click", (ev) => {
   ev.preventDefault();
 
   if (registroUsuarios.length > 0 && encargues.length > 0) {
-    registroUsuarios.push(encargues);
-    pedidoUsuario.push(registroUsuarios);
+
+    pedidoUsuario=[...registroUsuarios,...encargues]
+    registroUsuarios=[]
+    encargues=[]
 
     console.log(pedidoUsuario);
-    console.log(registroUsuarios);
 
     mensajeCargado(registroUsuarios);
+    datos.reset()
   } else {
     Swal.fire({
       icon: "warning",
@@ -197,8 +201,8 @@ const mensajeCargado = () => {
     imageWidth: 400,
     imageHeight: 200,
     imageAlt: "Custom image",
-    html: `<b>${registroUsuarios[0].Nombre}</b>,
-    usted ha encargado ${encargues.length} disco/s.<br>
+    html: `<b>${pedidoUsuario[0].Nombre}</b>,
+    usted ha encargado ${pedidoUsuario.length-1} disco/s.<br>
     Pronto le enviaremos un email.`,
     showCloseButton: true,
     showCancelButton: false,
@@ -244,7 +248,7 @@ const numCarrito = document.getElementById("num-carrito");
 const botonFinalizar = document.getElementById("modal-footer");
 const addCarrito = document.getElementById("add");
 
-
+let total=0;
 const actCarrito = () => {
 
   addCarrito.innerHTML = "";
@@ -270,7 +274,7 @@ const actCarrito = () => {
   });
 
   // condicion para mostrar u ocultar el boton de vaciar el carrito y finalizar compra
-  const total = carrito.reduce((ac, disc) => ac + disc.precio, 0);
+   total = carrito.reduce((ac, disc) => ac + disc.precio, 0);
 
   if (carrito.length !== 0) {
     //para que aparezca el boton de vaciar el carrito
@@ -294,7 +298,7 @@ const actCarrito = () => {
 
     const mostrFinalizar = document.createElement("div")
     mostrFinalizar.innerHTML = `
-    <button type="button" class="btn btn-primary" onClick="finalizarCompra()">Finalizar compra</button>`
+    <button type="button" class="btn btn-primary" onClick="finalizarCompra(event)">Finalizar compra</button>`
     botonFinalizar.append(mostrFinalizar);
   } else {
     btnVaciar.innerHTML = "Carrito vacio"
@@ -315,8 +319,6 @@ const agregarCarrito = (id) => {
   const disc = discos.find((disco) => disco.id === id);
   carrito.push(disc);
   actCarrito();
-
-  console.log(carrito);
 
   Toastify({
     text: "Disco agregado al carrito",
@@ -339,26 +341,56 @@ const borrarItem = (id) => {
   const indice = carrito.indexOf(item);
   carrito.splice(indice, 1);
   actCarrito();
-  console.log(carrito)
 };
 
 //funcion para vaciar el carrito
 const vaciar = () => {
   carrito.length = 0;
   actCarrito();
-  console.log(carrito);
 }
 
 // funcion para el boton de finalizar compra
-const finalizarCompra = () => {
+const finalizarCompra = (evt) => {
+  evt.preventDefault()
   Swal.fire({
-    title: 'Desea terminar esta compra?',
-    icon: 'warning',
+    title: 'Calcule su pago en cuotas <hr>',
+    html:
+    `<div id="calculadora" class="container">
+      <div class="row align-items-center cont-calculadora">
+
+        <div class="formulario-calc col-12">
+          <form id="form3">
+            <div class="mb-3 monto-total">
+              <h4 id="monto">Total compra: <span>$${total}</span></h4> 
+            </div>
+
+            <label class="form-label">Elija entre 3, 6, 12, o 18 cuotas</label>
+            <select class="form-select mb-3" aria-label="Default select example" id="cuotas">
+              <option selected>Seleccione cantidad de cuotas</option>
+              <option value="3">3</option>
+              <option value="6">6</option>
+              <option value="12">12</option>
+              <option value="18">18</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary" onclick="montoInteres(event)">Calcular</button>
+            <h4 class="mas-interes1">Costo final con interés: <span id="interes" class="result">$0</span></h4>
+            <h4 class="mas-interes2">Plan de pago: <span id="planCuota" class="result"></span><span id="plan"
+                class="result">$0</span></h4>
+            <h6 class="aviso">*Nos comunicaremos vía email para concretar el pago</h6>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+    `,
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Confirmar'
-  }).then((result) => {
+    confirmButtonText: 'Confirmar compra',
+    cancelButtonText: 'Cancelar'
+  })
+  .then((result) => {
     if (result.isConfirmed) {
       vaciar();
       Swal.fire(
@@ -381,16 +413,6 @@ modalCarrito.addEventListener('click', (even) => {
 //--------------------------------------------------------------------------
 //calculo de pago en cuotas
 
-const calcOk = () => {
-  Swal.fire({
-    position: "center",
-    icon: "success",
-    title: "Excelente!!",
-    showConfirmButton: false,
-    timer: 1200,
-  });
-};
-
 let resultado;
 let cuota;
 
@@ -402,61 +424,42 @@ const cadaCuota = (total, cant) => (cuota = total / cant);
 const montoInteres = (ev) => {
   ev.preventDefault();
 
-  const monto = Number(document.getElementById("monto").value);
   const cantCuotas = Number(document.getElementById("cuotas").value);
 
-  if (cantCuotas === 3 && monto != "") {
-    calculoInteres(monto, 0.05);
+  if (cantCuotas === 3 && total != "") {
+    calculoInteres(total, 0.05);
     cadaCuota(resultado, cantCuotas);
     interes.innerText = `$${resultado}`;
     plan.innerText = `$${cuota.toFixed(2)}`;
     planCuota.innerText = ` ${cantCuotas} cuotas de `;
-    calcOk();
-  } else if (cantCuotas === 6 && monto != "") {
-    calculoInteres(monto, 0.1);
+  } else if (cantCuotas === 6 && total != "") {
+    calculoInteres(total, 0.1);
     cadaCuota(resultado, cantCuotas);
     interes.innerText = `$${resultado}`;
     plan.innerText = `$${cuota.toFixed(2)}`;
     planCuota.innerText = ` ${cantCuotas} cuotas de `;
-    calcOk();
-  } else if (cantCuotas === 12 && monto != "") {
-    calculoInteres(monto, 0.15);
+  } else if (cantCuotas === 12 && total != "") {
+    calculoInteres(total, 0.15);
     cadaCuota(resultado, cantCuotas);
     interes.innerText = `$${resultado}`;
     plan.innerText = `$${cuota.toFixed(2)}`;
     planCuota.innerText = ` ${cantCuotas} cuotas de `;
-    calcOk();
-  } else if (cantCuotas === 18 && monto != "") {
-    calculoInteres(monto, 0.2);
+  } else if (cantCuotas === 18 && total != "") {
+    calculoInteres(total, 0.2);
     cadaCuota(resultado, cantCuotas);
     interes.innerText = `$${resultado}`;
     plan.innerText = `$${cuota.toFixed(2)}`;
     planCuota.innerText = ` ${cantCuotas} cuotas de `;
-    calcOk();
   } else {
     interes.innerText = " No calculado";
     plan.innerText = " No calculado";
     planCuota.innerText = ``;
     resultado = undefined;
     cuota = undefined;
-    if (monto == "") {
-      Swal.fire({
-        icon: "error",
-        title: "Ups!",
-        text: "No ha ingresado un monto",
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Calculo no permitido!",
-        text: "Recuerde elegir cantidad de cuotas",
-      });
-    }
+    Swal.fire({
+      icon: "error",
+      title: "Calculo no permitido!",
+      text: "No ingreso cantidad de cuotas",
+    });
   }
-
-  resultado
-    ?
-    console.log(resultado) :
-    console.log("no se puede obtener un resultado");
-  resultado ? console.log(cuota) : console.log("no se puede calcular cuotas");
 };

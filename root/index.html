@@ -12,6 +12,7 @@
 
   <title>Dos naranjas Disqueria - Vinilos</title>
 
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
 
   <!-- Font Awesome -->
   <!-- <script src="https://kit.fontawesome.com/851501c68f.js" crossorigin="anonymous"></script> -->
@@ -56,9 +57,6 @@
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="#galProd">Discos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#calculadora">Cuotas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="#gal-info">Conciertos</a>
@@ -198,46 +196,7 @@
       </div>
     </div>
   </div>
-  <!-- calculador de cuotas -->
 
-  <section class="cont-calc">
-    <div id="calculadora" class="container">
-      <div class="row">
-        <h2 class="col-12 text-calculo">
-          <b>Calcule su pago en cuotas</b>
-        </h2>
-      </div>
-      <div class="row justify-content-between align-items-center cont-calculadora">
-
-        <div data-aos="zoom-in-down" data-aos-duration="1500" class="formulario-calc col-lg-7 col-md-12">
-          <form id="form3">
-            <div class="mb-3">
-              <label class="form-label">Ingrese el monto total de su compra</label>
-              <input type="number" class="form-control" id="monto" placeholder="$" />
-            </div>
-
-            <label class="form-label">Elija entre 3, 6, 12, o 18 cuotas</label>
-            <select class="form-select mb-3" aria-label="Default select example" id="cuotas">
-              <option selected>Seleccione cantidad de cuotas</option>
-              <option value="3">3</option>
-              <option value="6">6</option>
-              <option value="12">12</option>
-              <option value="18">18</option>
-            </select>
-
-            <button type="submit" class="btn btn-warning" onclick="montoInteres(event)">Calcular</button>
-            <h4 class="mas-interes">Costo final con interés: <span id="interes" class="result">$0</span></h4>
-            <h4 class="mas-interes">Plan de pago: <span id="planCuota" class="result"></span><span id="plan"
-                class="result">$0</span></h4>
-            <h6 class="mas-interes">*Nos comunicaremos vía email para concretar el pago</h6>
-          </form>
-        </div>
-        <div class="col-lg-5 col-md-12 text-center">
-          <img class="img-calc" src="img/calculadora.webp" alt="calculadora" />
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- seccion informacion de eventos internacionales tomadas de la API SeatGeek -->
 

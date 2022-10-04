@@ -84,8 +84,9 @@ header .nav {
 .gal__item {
   margin: 1.5em auto;
   padding: 0 1.5em;
-
 }
+
+
 .gal__item div {
   background-color: #ffffff;
   width: 100%;
@@ -94,6 +95,7 @@ header .nav {
   padding-bottom: 0.5em;
   box-shadow: 5px 5px 6px #696969;
 }
+
 .gal__item img {
   width: 100%;
   height: auto;
@@ -130,12 +132,11 @@ header .nav {
 
 /* calculadora cuotas */
 
-.cont-calc{
-  background-color: #303030;
+.monto-total{
+  padding-bottom: 1em;
 }
-.cont-calculadora{
-  padding-top: 3em;
-  padding-bottom: 13em;
+.monto-total h4 span{
+  color: var(--color1)
 }
 .formulario-calc{
   background-color: #ffffff;
@@ -158,8 +159,15 @@ header .nav {
   padding: 3em;
   border-radius: 100%;
 }
-.mas-interes {
-  padding-top: 1em;
+.mas-interes1 {
+  padding-top: 1.5em;
+}
+.mas-interes2{
+  padding-top: 0.2em;
+}
+.aviso{
+  padding-top: 1.8em;
+  font-size: .9em;
 }
 
 .result {
@@ -232,11 +240,11 @@ padding-bottom: 13em;
   font-style: normal;
   font-weight: bold;
   color: var(--color1);
-  font-size: 1.6em;
+  font-size: 1.4em;
 }
 .pie-pagina .grup-1 .box p {
   font-family: "Playfair Display", serif;
-  font-size: 15px;
+  font-size: 1em;
   color: #da8300;
   margin-bottom: 10px;
 }
@@ -249,7 +257,7 @@ padding-bottom: 13em;
   padding: .4em;
   text-decoration: none;
   width: 2em;
-  font-size: 1.8em;
+  font-size: 1.7em;
   color: #da8300;
   text-align: center;
   transition: all 300ms ease;
